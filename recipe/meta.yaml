@@ -1,0 +1,48 @@
+{% set data = load_setup_py_data(setup_file='../setup.py', from_recipe_dir=True) %}
+{% set name = data.get('name') %}
+{% set version = data.get('version') %}
+{% set summary = data.get('description') %}
+{% set description = data.get('long_description') %}
+{% set python_requires = data.get('python_requires') %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  number: 0
+  script: python -m pip install . --no-deps -vv
+
+requirements:
+  build:
+    - python {{ python_requires }}
+    - pip
+    - setuptools
+    - wheel
+
+
+  run:
+    - python {{ python_requires }}
+    - jinja2
+    - pyyaml
+    - click
+    - geopandas
+    - pandas
+    - loguru
+    - shapely>=2.0.0
+
+
+
+about:
+  summary: {{ summary }}
+  description: {{ summary }}
+  home: https://github.com/procrastinatio/lg-geology-data-model
+  license: BSD-3
+  summary: {{ summary }}
+  dev_url: https://github.com/procrastinatio/lg-geology-data-model/src/master/
+  doc_url: https://anaconda.org/swisstopo/geocover
+  doc_source_url: https://raw.githubusercontent.com/procrastinatio/lg-geology-data-model/master/README.md
