@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 import pandas as pd
 
-from config import abreviations
+from . import config 
 
 try:
     import arcpy
@@ -72,7 +72,7 @@ def dump_dict_to_json(data, file_path):
 
 
 def remove_abrev(msg):
-    for i in abreviations:
+    for i in config.abreviations:
         if msg.find(i) == 0:
             return msg.replace(i, "").strip()
 

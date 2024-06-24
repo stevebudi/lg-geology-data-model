@@ -60,7 +60,7 @@ setup(
     tests_require=["coverage"],
     entry_points={
         "console_scripts": [
-            "geocover = scripts.geocover:main",
+            "geocover = scripts.geocover:geocover",
         ],
     },
 )
